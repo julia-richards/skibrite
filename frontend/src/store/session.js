@@ -29,6 +29,12 @@ export const login = (user) => async (dispatch) => {
 	dispatch(setSessionUser(res.data.user));
 	return res;
 };
+//restore user session on page refresh
+export const restoreUser = () => async (dispatch) => {
+	const res = await fetch("/api/session");
+	dispatch(setSessionUser(res.data.user));
+	return res;
+};
 //set initial state to have no user
 
 const initialState = { user: null };
