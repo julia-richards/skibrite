@@ -50,8 +50,14 @@ export const restoreUser = () => async (dispatch) => {
 	dispatch(setSessionUser(res.data.user));
 	return res;
 };
-//set initial state to have no user
 
+//set-up logout
+export const logout = () => async (dispatch) => {
+	const res = await fetch("/api/session", { method: "DELETE" });
+	dispatch(removeSessionUser());
+	return res;
+};
+//set initial state to have no user
 const initialState = { user: null };
 
 //set-up session reducer
