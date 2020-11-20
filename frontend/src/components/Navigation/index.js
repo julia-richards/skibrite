@@ -11,18 +11,15 @@ const Navigation = () => {
 		<div className="navigation">
 			<ul>
 				<li>
-					<NavLink to="/">Home </NavLink>
+					<NavLink exact to="/">
+						Home{" "}
+					</NavLink>
 				</li>
 
 				{!!user ? (
-					<>
-						<li>
-							<NavLink to="/logout">Logout</NavLink>
-						</li>
-						<li>
-							<ProfileButton />
-						</li>
-					</>
+					<li>
+						<ProfileButton user={user} />
+					</li>
 				) : (
 					<>
 						<li>
