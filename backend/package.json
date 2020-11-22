@@ -32,6 +32,7 @@
     "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
+    "cross-fetch": "^3.0.6",
     "dotenv-cli": "^4.0.0",
     "nodemon": "^2.0.6"
   }
