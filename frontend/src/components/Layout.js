@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Layout = ({ children }) => (
 	<>
 		<Navigation />
-		<div class="page-wrap">{children}</div>
+		<div className="page-wrap">{children}</div>
 		<Footer />
 	</>
 );
