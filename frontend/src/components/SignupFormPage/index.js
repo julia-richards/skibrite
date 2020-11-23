@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-
+import Layout from "../Layout";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -32,47 +32,49 @@ function SignupFormPage() {
 	};
 
 	return (
-		<form className="signup-form" onSubmit={handleSubmit}>
-			<p>Sign Up</p>
-			<ul>
-				{errors.map((error, idx) => (
-					<li key={idx}>{error}</li>
-				))}
-			</ul>
-			<label>Email</label>
-			<input
-				type="text"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-				required
-			/>
+		<Layout>
+			<form className="signup-form" onSubmit={handleSubmit}>
+				<p>Sign Up</p>
+				<ul>
+					{errors.map((error, idx) => (
+						<li key={idx}>{error}</li>
+					))}
+				</ul>
+				<label>Email</label>
+				<input
+					type="text"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					required
+				/>
 
-			<label>Username</label>
-			<input
-				type="text"
-				value={username}
-				onChange={(e) => setUsername(e.target.value)}
-				required
-			/>
+				<label>Username</label>
+				<input
+					type="text"
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					required
+				/>
 
-			<label>Password</label>
-			<input
-				type="password"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-				required
-			/>
+				<label>Password</label>
+				<input
+					type="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					required
+				/>
 
-			<label>Confirm Password</label>
-			<input
-				type="password"
-				value={confirmPassword}
-				onChange={(e) => setConfirmPassword(e.target.value)}
-				required
-			/>
+				<label>Confirm Password</label>
+				<input
+					type="password"
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					required
+				/>
 
-			<button type="submit">Sign Up</button>
-		</form>
+				<button type="submit">Sign Up</button>
+			</form>
+		</Layout>
 	);
 }
 

@@ -12,20 +12,23 @@ function App() {
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
 	}, [dispatch]);
+
+	if (!isLoaded) {
+		return <p>Loading...</p>;
+	}
+
 	return (
-		isLoaded && (
-			<div>
-				<Navigation />
-				<Switch>
-					<Route path="/login">
-						<LoginFormPage />
-					</Route>
-					<Route path="/signup">
-						<SignupFormPage />
-					</Route>
-				</Switch>
-			</div>
-		)
+		<Switch>
+			<Route path="/login">
+				<LoginFormPage />
+			</Route>
+			<Route path="/signup">
+				<SignupFormPage />
+			</Route>
+			<Route path="/events">
+				<EventsPage />
+			</Route>
+		</Switch>
 	);
 }
 
