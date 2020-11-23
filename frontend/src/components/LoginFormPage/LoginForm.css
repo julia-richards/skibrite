@@ -1,11 +1,11 @@
 body {
-	background-color: #f2e9e4;
+	background-color: var(--background);
 }
 
 .login-form {
 	width: 500px;
 	height: 500px;
-	background-color: #9a8c98;
+	background-color: var(--light-blue);
 	display: flex;
 	align-items: center;
 	margin: auto;
@@ -27,7 +27,7 @@ form {
 
 input {
 	margin: 3px;
-	background-color: #f2e9e4;
+	background-color: #f9fbf2;
 	color: #22223b;
 	border-radius: 0.25em;
 }
@@ -35,7 +35,7 @@ input {
 button {
 	margin: 3px;
 	width: 100px;
-	background-color: #f2e9e4;
+	background-color: #f9fbf2;
 	border-radius: 0.25em;
 	color: #22223b;
 }

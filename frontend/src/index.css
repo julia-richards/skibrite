@@ -1,1 +1,18 @@
 /* TODO Add site wide styles */
+body {
+	--light-pink: #ffede1;
+	--light-blue: #d7f9ff;
+	--light-purple: #afcbff;
+	--background: #f9fbf2;
+	--dark-blue: #0e1c36;
+	background-color: #8ec5fc;
+
+}
+
+/* @media (prefers-color-scheme: dark) {
+	body {
+		--light-blue: #d7f9ff;
+		--background: #0e1c36;
+		--dark-blue: #f9fbf2;
+	}
+} */

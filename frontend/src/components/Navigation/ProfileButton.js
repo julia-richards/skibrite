@@ -32,7 +32,7 @@ const ProfileButton = ({ user }) => {
 				style={{ color: "#4A4E69", fontSize: "36px" }}
 				onClick={openMenu}
 			>
-				<i className="fas fa-user-astronaut"></i>
+				<i className="fas fa-skiing-nordic"></i>
 			</button>
 			{showMenu && (
 				<ul className="profile-dropdown">
