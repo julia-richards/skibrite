@@ -23,7 +23,6 @@ const getData = async () => {
 
 (async () => {
 	const eventList = await getData();
-	console.log(eventList);
 
 	fs.writeFile("./events.json", JSON.stringify(eventList), function (err) {
 		if (err) {
