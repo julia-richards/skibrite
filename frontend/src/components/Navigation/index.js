@@ -15,6 +15,11 @@ const Navigation = () => {
 						Home{" "}
 					</NavLink>
 				</li>
+				<li>
+					<NavLink exact to="/events">
+						Events{" "}
+					</NavLink>
+				</li>
 
 				{!!user ? (
 					<li>
