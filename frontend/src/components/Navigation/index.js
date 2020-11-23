@@ -9,18 +9,16 @@ const Navigation = () => {
 
 	return (
 		<div className="navigation">
-			<ul>
-				<li>
-					<NavLink exact to="/">
-						Home{" "}
-					</NavLink>
-				</li>
+			<NavLink exact to="/" className="right-nav">
+				<h2 className="logo">skibrite</h2>
+			</NavLink>
+
+			<ul className="right-nav">
 				<li>
 					<NavLink exact to="/events">
-						Events{" "}
+						events{" "}
 					</NavLink>
 				</li>
-
 				{!!user ? (
 					<li>
 						<ProfileButton user={user} />
@@ -28,10 +26,10 @@ const Navigation = () => {
 				) : (
 					<>
 						<li>
-							<NavLink to="/login">Login</NavLink>
+							<NavLink to="/login">login</NavLink>
 						</li>
 						<li>
-							<NavLink to="/signup">Sign Up</NavLink>
+							<NavLink to="/signup">sign up</NavLink>
 						</li>
 					</>
 				)}

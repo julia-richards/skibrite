@@ -1,5 +1,6 @@
 ul {
 	list-style-type: none;
+	text-decoration: none;
 }
 
 button {
@@ -9,4 +10,32 @@ button {
 
 i {
 	color: var(--dark-blue);
+}
+.navigation {
+	display: flex;
+	justify-content: space-between;
+}
+
+.logo {
+	color: #ff9892;
+	margin-left: 1.5rem;
+	text-decoration: none;
+}
+
+.right-nav {
+	align-self: flex-start;
+	color: var(--dark-blue);
+	text-decoration: none;
+	align-self: flex-end;
+	display: flex;
+	flex-flow: row wrap;
+	margin-right: 1.5rem;
+}
+.right-nav a {
+	text-decoration: none;
+	font-weight: 700;
+	color: var(--dark-blue);
+}
+.right-nav li:not(:first-of-type) {
+	margin-left: 0.5rem;
 }
