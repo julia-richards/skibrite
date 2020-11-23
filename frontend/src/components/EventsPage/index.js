@@ -43,7 +43,7 @@ const EventsPage = () => {
 					}
 				/>
 				{!!events.length ? (
-					<ul>
+					<ul style={isFetching ? { opacity: 0.7 } : {}}>
 						{events.map((event) => (
 							<li className="EventItem" key={event.id}>
 								<h2>{event.name}</h2>
@@ -55,6 +55,8 @@ const EventsPage = () => {
 							</li>
 						))}
 					</ul>
+				) : isFetching ? (
+					<p>Loading...</p>
 				) : (
 					<p>No events match</p>
 				)}
