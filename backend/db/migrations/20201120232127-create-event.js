@@ -18,16 +18,19 @@ module.exports = {
 				type: Sequelize.STRING,
 			},
 			lat: {
-				type: Sequelize.BIGINT,
+				type: Sequelize.DECIMAL(12, 8),
 			},
 			long: {
-				type: Sequelize.BIGINT,
+				type: Sequelize.DECIMAL(12, 8),
 			},
 			distance: {
 				type: Sequelize.FLOAT,
 			},
 			startsAt: {
 				type: Sequelize.DATE,
+			},
+			description: {
+				type: Sequelize.TEXT,
 			},
 			endsAt: {
 				type: Sequelize.DATE,
@@ -37,6 +40,7 @@ module.exports = {
 			},
 			eventCategoryId: {
 				type: Sequelize.INTEGER,
+				references: { model: "EventCategories" },
 			},
 			createdAt: {
 				allowNull: false,

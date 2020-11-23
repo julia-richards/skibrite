@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const eventsRouter = require("./events");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 
@@ -38,5 +39,6 @@ router.post("/test", function (req, res) {
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
+router.use("/events", eventsRouter);
 
 module.exports = router;

@@ -8,7 +8,7 @@ module.exports = {
 
 		for (let event of dataFromApi) {
 			// find or create category
-			const eventCategory = await EventCategory.findOrCreate({
+			const eventCategory = await EventCategory.findOne({
 				where: { name: event.categoryName },
 			});
 			// replace name string w/ id
@@ -19,6 +19,7 @@ module.exports = {
 			event.startsAt = new Date(startDateString);
 			let endDateString = Date(event.endsAt);
 			event.endsAt = new Date(endDateString);
+
 			// add to bulk attrs
 			events.push(event);
 		}
@@ -27,7 +28,7 @@ module.exports = {
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.bulkDelete("EventCategories", null, {});
-		await queryInterface.bulkDelete("Events", null, {});
+		return queryInterface.bulkDelete("Events", null, {});
+		// return  queryInterface.bulkDelete("EventCategories", null, {})
 	},
 };
