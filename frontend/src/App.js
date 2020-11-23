@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import HomePage from "./components/HomePage";
+import EventPage from "./components/EventPage";
 import EventsPage from "./components/EventsPage";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
 
 function App() {
 	const dispatch = useDispatch();
@@ -20,6 +21,9 @@ function App() {
 
 	return (
 		<Switch>
+			<Route exact path="/">
+				<HomePage />
+			</Route>
 			<Route path="/login">
 				<LoginFormPage />
 			</Route>
@@ -28,6 +32,9 @@ function App() {
 			</Route>
 			<Route path="/events">
 				<EventsPage />
+			</Route>
+			<Route path="/event/:eventId">
+				<EventPage />
 			</Route>
 		</Switch>
 	);
