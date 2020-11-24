@@ -1,0 +1,14 @@
+.EventsPage {
+	max-width: 960px;
+	margin: auto;
+}
+
+.EventsPage__header {
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+}
+
+.EventsPage__header h1 {
+	margin-right: 1rem;
+}

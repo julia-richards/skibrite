@@ -14,6 +14,7 @@ i {
 .navigation {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .logo {
@@ -26,7 +27,7 @@ i {
 	align-self: flex-start;
 	color: var(--dark-blue);
 	text-decoration: none;
-	align-self: flex-end;
+	align-items: center;
 	display: flex;
 	flex-flow: row wrap;
 	margin-right: 1.5rem;

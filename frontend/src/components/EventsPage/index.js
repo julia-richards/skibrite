@@ -6,6 +6,8 @@ import CategoryPicker from "./CategoryPicker";
 import * as eventActions from "../../store/events";
 import * as categoryActions from "../../store/categories";
 
+import "./EventsPage.css";
+
 const EventsPage = () => {
 	const dispatch = useDispatch();
 	const categories = useSelector((state) => state.categories);
@@ -34,14 +36,17 @@ const EventsPage = () => {
 	return (
 		<Layout>
 			<div className="EventsPage">
-				<h1>Events</h1>
-				<CategoryPicker
-					value={selectedEventCategoryId}
-					options={categories}
-					onChange={(value) =>
-						dispatch(eventActions.selectEventCategoryId(value))
-					}
-				/>
+				<header className="EventsPage__header">
+					<h1>Events</h1>
+					<CategoryPicker
+						value={selectedEventCategoryId}
+						options={categories}
+						onChange={(value) =>
+							dispatch(eventActions.selectEventCategoryId(value))
+						}
+					/>
+				</header>
+
 				{!!events.length ? (
 					<ul style={isFetching ? { opacity: 0.7 } : {}}>
 						{events.map((event) => (

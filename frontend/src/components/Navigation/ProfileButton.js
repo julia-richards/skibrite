@@ -29,7 +29,7 @@ const ProfileButton = ({ user }) => {
 	return (
 		<>
 			<button
-				style={{ color: "#4A4E69", fontSize: "36px" }}
+				style={{ color: "#4A4E69", fontSize: 24 }}
 				onClick={openMenu}
 			>
 				<i className="fas fa-skiing-nordic"></i>

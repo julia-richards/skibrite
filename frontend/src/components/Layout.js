@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Layout = ({ children }) => (
 	<>
 		<Navigation />
-		<div className="page-wrap">{children}</div>
+		<div style={{ minHeight: "75vh" }}>{children}</div>
 		<Footer />
 	</>
 );
