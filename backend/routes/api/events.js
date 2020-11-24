@@ -26,4 +26,17 @@ router.get(
 	})
 );
 
+router.get(
+	"/:eventId",
+	asyncHandler(async (req, res) => {
+		const eventId = req.params.eventId;
+
+		const event = await Event.findOne({
+			where: { id: eventId },
+		});
+
+		return res.json({ event });
+	})
+);
+
 module.exports = router;
