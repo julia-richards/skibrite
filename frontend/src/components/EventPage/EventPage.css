@@ -1,29 +1,33 @@
-.home-banner {
+.event-banner {
 	height: 300px;
 	width: 100%;
 	background-color: var(--dark-blue);
 	position: relative;
+	margin-top: 20px;
 	margin-bottom: 80px;
 }
-.home-banner__text {
-	padding: 120px 100px;
-	font-size: 30px;
+
+.event-banner__text {
+	padding: 20px 80px;
+	font-size: 24px;
 	font-weight: 800;
+	position: absolute;
+	left: 50%;
+	top: 0;
 	color: var(--light-pink);
 }
 
-.home-banner__image {
+.event-banner__image {
 	object-fit: cover;
 	position: absolute;
 	top: -10%;
-	right: 0;
+	left: 32px;
 	z-index: 1;
 	height: 125%;
-	width: auto;
+	width: 40%;
 }
 
-.event-category-links {
-	color: var(--dark-blue);
-	font-weight: 800;
-	margin-left: 1.5rem;
+.map {
+	height: 500px;
+	width: auto;
 }

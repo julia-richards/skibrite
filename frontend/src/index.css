@@ -9,6 +9,7 @@ body {
 	background-color: var(--background);
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0;
+	overscroll-behavior: none;
 }
 
 /* @media (prefers-color-scheme: dark) {

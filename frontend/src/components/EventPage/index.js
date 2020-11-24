@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../Layout";
-import Map from "../Map";
+import MapDisplay from "../MapDisplay";
+import { ReactComponent as ImageBanner } from "../../images/alpine.svg";
 import * as eventActions from "../../store/events";
+import "./EventPage.css";
 
 const EventPage = (props) => {
 	const eventId = props.match.params.eventId;
@@ -28,24 +30,29 @@ const EventPage = (props) => {
 
 	return (
 		<Layout>
-			<div className="EventPage">
-				<h1>{event.name}</h1>
-				<h2>TODO: add event category name via backend</h2>
-				<p>
-					Website:{" "}
-					{
-						<a target="_blank" href={event.website}>
-							{event.website}
-						</a>
-					}
+			<div className="event-banner">
+				<p className="event-banner__text">
+					<h1>{event.name}</h1>
 				</p>
-				<p>Starts At: {new Date(event.startsAt).toLocaleString()}</p>
-				<p>Ends At: {new Date(event.endsAt).toLocaleString()}</p>
-				<p>State: {event.state}</p>
-				<p>Lat: {event.lat}</p>
-				<p>Long: {event.long}</p>
-				<Map lat={event.lat} long={event.long} />
+				<ImageBanner
+					alt="alpine-skier"
+					className="event-banner__image"
+				/>
 			</div>
+
+			<h2>TODO: add event category name via backend</h2>
+			<p>
+				Website:{" "}
+				{
+					<a target="_blank" href={event.website}>
+						{event.website}
+					</a>
+				}
+			</p>
+			<p>Starts At: {new Date(event.startsAt).toLocaleString()}</p>
+			<p>Ends At: {new Date(event.endsAt).toLocaleString()}</p>
+			<p>State: {event.state}</p>
+			<MapDisplay lat={event.lat} long={event.long} />
 		</Layout>
 	);
 };
