@@ -77,7 +77,7 @@ const shouldFetchEvent = (state, eventId) => {
 	if (event.isFetching) {
 		return false;
 	}
-	return true;
+	return false;
 };
 
 export const fetchEventIfNeeded = (eventId) => (dispatch, getState) => {

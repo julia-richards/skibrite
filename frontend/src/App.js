@@ -33,9 +33,7 @@ function App() {
 			<Route path="/events">
 				<EventsPage />
 			</Route>
-			<Route path="/event/:eventId">
-				<EventPage />
-			</Route>
+			<Route path="/event/:eventId" component={EventPage} />
 		</Switch>
 	);
 }
