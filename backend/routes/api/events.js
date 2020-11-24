@@ -11,10 +11,16 @@ const router = express.Router();
 router.get(
 	"/",
 	asyncHandler(async (req, res) => {
-		const events = await Event.findAll({
-			order: [["name", "ASC"]],
-			limit: 10,
-		});
+		const eventCategoryId = req.query.eventCategoryId;
+
+		const events = !!eventCategoryId
+			? await Event.findAll({
+					where: { eventCategoryId },
+					order: [["name", "ASC"]],
+			  })
+			: await Event.findAll({
+					order: [["name", "ASC"]],
+			  });
 
 		return res.json({ events });
 	})

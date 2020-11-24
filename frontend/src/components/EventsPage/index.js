@@ -37,10 +37,7 @@ const EventsPage = () => {
 				<h1>Events</h1>
 				<CategoryPicker
 					value={selectedEventCategoryId}
-					options={categories.map((cat) => ({
-						value: cat.id,
-						name: cat.name,
-					}))}
+					options={categories}
 					onChange={(value) =>
 						dispatch(eventActions.selectEventCategoryId(value))
 					}
