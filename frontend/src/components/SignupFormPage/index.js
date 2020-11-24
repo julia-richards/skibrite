@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import Layout from "../Layout";
+import { Redirect, Link} from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -32,40 +31,42 @@ function SignupFormPage() {
 	};
 
 	return (
-		<Layout>
+		<div className="signup-form-container">
 			<form className="signup-form" onSubmit={handleSubmit}>
-				<p>Sign Up</p>
+				<p className="logo">skibrite</p>
+				<p>Sign up</p>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>Email</label>
+
 				<input
+					placeholder="email address"
 					type="text"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					required
 				/>
 
-				<label>Username</label>
 				<input
+					placeholder="username"
 					type="text"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
 					required
 				/>
 
-				<label>Password</label>
 				<input
+					placeholder="password"
 					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 					required
 				/>
 
-				<label>Confirm Password</label>
 				<input
+					placeholder="confirm password"
 					type="password"
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
@@ -73,8 +74,13 @@ function SignupFormPage() {
 				/>
 
 				<button type="submit">Sign Up</button>
+				<span>
+					Already have an account? {" "}
+					<Link to="/login">Login</Link>{" or "}
+					<Link to="/login-demo">Demo</Link>
+				</span>
 			</form>
-		</Layout>
+		</div>
 	);
 }
 
