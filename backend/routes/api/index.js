@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const categoriesRouter = require("./categories");
 const eventsRouter = require("./events");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
@@ -40,5 +41,6 @@ router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
 router.use("/events", eventsRouter);
+router.use("/categories", categoriesRouter);
 
 module.exports = router;

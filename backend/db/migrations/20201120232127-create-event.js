@@ -18,10 +18,10 @@ module.exports = {
 				type: Sequelize.STRING,
 			},
 			lat: {
-				type: Sequelize.DECIMAL(12, 8),
+				type: Sequelize.DECIMAL(19, 15),
 			},
 			long: {
-				type: Sequelize.DECIMAL(12, 8),
+				type: Sequelize.DECIMAL(19, 15),
 			},
 			distance: {
 				type: Sequelize.FLOAT,
