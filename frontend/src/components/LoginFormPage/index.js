@@ -8,14 +8,14 @@ import "./LoginForm.css";
 
 const LoginFormPage = () => {
 	const dispatch = useDispatch();
-	const sessioUser = useSelector((state) => state.session.user);
+	const sessionUser = useSelector((state) => state.session.user);
 	//set state
 	const [credential, setCredential] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 
 	//redirect to home if user already logged in
-	if (sessioUser) return <Redirect to="/" />;
+	if (sessionUser) return <Redirect to="/" />;
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

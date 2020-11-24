@@ -13,6 +13,7 @@ const categoryOptions = [
 
 const EventsPage = () => {
 	const dispatch = useDispatch();
+	// const eventCategories = useSelector((state) => state.categories.name);
 	const selectedEventCategoryId = useSelector(
 		(state) => state.events.selectedEventCategoryId
 	);
