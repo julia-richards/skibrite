@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Layout from "../Layout";
 
 import "./LoginForm.css";
@@ -27,35 +27,44 @@ const LoginFormPage = () => {
 		);
 	};
 	return (
-		<Layout>
-			<div className="login-form">
-				<form onSubmit={handleSubmit}>
-					<p>Log In</p>
-					<ul>
-						{errors.map((error, idx) => (
-							<li key={idx}>{error}</li>
-						))}
-					</ul>
-					<label>Email Address</label>
-					<input
-						name="email"
-						value={credential}
-						placeholder="email address"
-						onChange={(e) => setCredential(e.target.value)}
-					/>
+		<>
+			<div className="login-background">
+				<div className="login-form">
+					<form onSubmit={handleSubmit}>
+						<p className="logo">skibrite</p>
+						<ul>
+							{errors.map((error, idx) => (
+								<li key={idx}>{error}</li>
+							))}
+						</ul>
+						<input
+							type='email'
+							name="email"
+							value={credential}
+							placeholder="email address"
+							onChange={(e) => setCredential(e.target.value)}
+						/>
 
-					<label>Password</label>
-					<input
-						name="password"
-						value={password}
-						placeholder="password"
-						onChange={(e) => setPassword(e.target.value)}
-					/>
+						<input
+							type="password"
+							name="password"
+							value={password}
+							placeholder="password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
 
-					<button type="submit">Log In</button>
-				</form>
+						<button className="login-button" type="submit">
+							login
+						</button>
+						<p className="sign-up">
+							Don’t have a skibrite account? {" "}
+							<Link to='/signup'>Sign up</Link> {"or "}
+							<Link to="/login-demo">Demo</Link>
+						</p>
+					</form>
+				</div>
 			</div>
-		</Layout>
+		</>
 	);
 };
 

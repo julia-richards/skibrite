@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../Layout";
+import Map from "../Map";
 import * as eventActions from "../../store/events";
 
 const EventPage = (props) => {
@@ -43,6 +44,7 @@ const EventPage = (props) => {
 				<p>State: {event.state}</p>
 				<p>Lat: {event.lat}</p>
 				<p>Long: {event.long}</p>
+				<Map lat={event.lat} long={event.long} />
 			</div>
 		</Layout>
 	);
