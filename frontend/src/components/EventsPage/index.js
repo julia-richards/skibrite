@@ -4,16 +4,11 @@ import { Link } from "react-router-dom";
 import Layout from "../Layout";
 import CategoryPicker from "./CategoryPicker";
 import * as eventActions from "../../store/events";
-
-// TODO: get me from API
-const categoryOptions = [
-	{ id: 1, name: "Nordic" },
-	{ id: 2, name: "Club Membership" },
-];
+import * as categoryActions from "../../store/categories";
 
 const EventsPage = () => {
 	const dispatch = useDispatch();
-	// const eventCategories = useSelector((state) => state.categories.name);
+	const categories = useSelector((state) => state.categories);
 	const selectedEventCategoryId = useSelector(
 		(state) => state.events.selectedEventCategoryId
 	);
@@ -24,6 +19,10 @@ const EventsPage = () => {
 	useEffect(() => {
 		dispatch(eventActions.fetchEventsIfNeeded(selectedEventCategoryId));
 	}, [selectedEventCategoryId]);
+
+	useEffect(() => {
+		dispatch(categoryActions.fetchCategoriesIfNeeded());
+	}, [categories]);
 
 	const { isFetching, lastUpdated, items: events } = eventsByEventCategoryId[
 		selectedEventCategoryId
@@ -38,7 +37,10 @@ const EventsPage = () => {
 				<h1>Events</h1>
 				<CategoryPicker
 					value={selectedEventCategoryId}
-					options={categoryOptions}
+					options={categories.map((cat) => ({
+						value: cat.id,
+						name: cat.name,
+					}))}
 					onChange={(value) =>
 						dispatch(eventActions.selectEventCategoryId(value))
 					}

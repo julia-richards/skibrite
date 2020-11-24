@@ -1,5 +1,6 @@
 import { fetch } from "./csrf";
 import { combineReducers } from "redux";
+import { RECEIVE_CATEGORIES } from "./categories";
 
 export const REQUEST_EVENTS = "REQUEST_EVENTS";
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
@@ -47,11 +48,12 @@ export const fetchEventsIfNeeded = (eventCategoryId) => (
 	}
 };
 
-//defaults to first category
-const selectedEventCategoryId = (state = 1, action) => {
+const selectedEventCategoryId = (state = "", action) => {
 	switch (action.type) {
 		case SELECT_EVENTCATEGORYID:
 			return action.payload.eventCategoryId;
+		case RECEIVE_CATEGORIES:
+			return action.payload.categories[0].id;
 		default:
 			return state;
 	}
