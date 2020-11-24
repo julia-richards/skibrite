@@ -44,6 +44,14 @@ export const login = (user) => async (dispatch) => {
 	dispatch(setSessionUser(res.data.user));
 	return res;
 };
+
+//login demo
+export const loginDemo = () => async (dispatch) => {
+	const res = await fetch("/api/session/demo");
+	dispatch(setSessionUser(res.data.user));
+	return res;
+};
+
 //restore user session on page refresh
 export const restoreUser = () => async (dispatch) => {
 	const res = await fetch("/api/session");

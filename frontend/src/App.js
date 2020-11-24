@@ -6,6 +6,7 @@ import EventPage from "./components/EventPage";
 import EventsPage from "./components/EventsPage";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
+import DemoLogin from "./components/DemoLogin";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
 			</Route>
 			<Route path="/login">
 				<LoginFormPage />
+			</Route>
+			<Route path="/login-demo">
+				<DemoLogin />
 			</Route>
 			<Route path="/signup">
 				<SignupFormPage />
