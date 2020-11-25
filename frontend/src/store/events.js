@@ -180,8 +180,10 @@ const byId = (state = {}, action) => {
 	}
 };
 
-export const eventsReducer = combineReducers({
+const eventsReducer = combineReducers({
 	eventsByEventCategoryId,
 	selectedEventCategoryId,
 	byId,
 });
+
+export default eventsReducer;
