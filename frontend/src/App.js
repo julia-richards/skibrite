@@ -7,6 +7,7 @@ import EventsPage from "./components/EventsPage";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import DemoLogin from "./components/DemoLogin";
+import UserTickets from "./components/UserTickets";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
 				<EventsPage />
 			</Route>
 			<Route path="/event/:eventId" component={EventPage} />
+			<Route path="/tickets">
+				<UserTickets />
+			</Route>
 		</Switch>
 	);
 }
