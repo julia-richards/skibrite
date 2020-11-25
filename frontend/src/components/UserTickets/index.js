@@ -13,9 +13,9 @@ const UserTickets = (props) => {
 		dispatch(ticketActions.fetchTicketsIfNeeded());
 	}, []);
 
-	const { isFetching, items: tickets } = ticketState;
+	const { isFetching, items: tickets, lastUpdated } = ticketState;
 
-	if (isFetching) {
+	if (isFetching && !lastUpdated) {
 		return (
 			<Layout>
 				<div className="UserTickets">
@@ -31,7 +31,7 @@ const UserTickets = (props) => {
 			<div className="UserTickets">
 				<h1>Tickets</h1>
 				{!!tickets.length ? (
-					<ul>
+					<ul style={isFetching ? { opacity: 0.7 } : {}}>
 						{tickets.map((ticket) => (
 							<li key={ticket.id}>
 								<pre>{JSON.stringify(ticket, null, 2)}</pre>
