@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Event } = require("../../db/models");
+const { User, Event, EventCategory } = require("../../db/models");
 
 const router = express.Router();
 
@@ -33,6 +33,7 @@ router.get(
 
 		const event = await Event.findOne({
 			where: { id: eventId },
+			include: [{ model: EventCategory }],
 		});
 
 		return res.json({ event });
