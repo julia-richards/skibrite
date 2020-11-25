@@ -8,6 +8,7 @@ const Footer = () => {
 				width: "100%",
 				backgroundColor: "var(--dark-blue)",
 				padding: "1rem 2rem",
+				boxSizing: "border-box",
 			}}
 		>
 			<p
