@@ -11,6 +11,7 @@ import "./EventPage.css";
 const EventPage = (props) => {
 	const eventId = props.match.params.eventId;
 	const dispatch = useDispatch();
+	const user = useSelector((state) => state.session.user);
 	const eventsById = useSelector((state) => state.events.byId);
 	const ticketState = useSelector((state) => state.tickets);
 
@@ -70,8 +71,10 @@ const EventPage = (props) => {
 						)}
 					</div>
 					<div className="event-details__details">
-						{!!eventTicket ? (
-							<p>Already has ticket</p>
+						{!user ? (
+							"Login to register for events"
+						) : !!eventTicket ? (
+							<p>Registered!</p>
 						) : isAddingTicket ? (
 							<button disabled>Adding...</button>
 						) : (

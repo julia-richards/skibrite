@@ -44,6 +44,10 @@ const fetchTickets = () => (dispatch) => {
 
 const shouldFetchTickets = (state) => {
 	const tickets = state.tickets;
+	const user = state.session.user;
+	if (!user) {
+		return false;
+	}
 	if (!tickets) {
 		return true;
 	}
