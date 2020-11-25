@@ -4,7 +4,7 @@ const fetch = require("cross-fetch");
 const getData = async () => {
 	const res = await fetch("http://www.SkiReg.com/api/search");
 	const json = await res.json();
-	console.log(json);
+	// console.log(json);
 	const page = await json.MatchingEvents.map((e) => {
 		return {
 			categoryName: e.EventTypes[0],
