@@ -3,6 +3,24 @@ import { fetch } from "./csrf";
 export const RECEIVE_TICKETS = "RECEIVE_TICKETS";
 export const REQUEST_TICKETS = "REQUEST_TICKETS";
 export const RESET_TICKETS = "RESET_TICKETS";
+export const ADD_TICKET_REQUEST = "ADD_TICKET_REQUEST";
+export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS ";
+
+const addTicketRequest = () => ({
+	type: ADD_TICKET_REQUEST,
+});
+
+const addTicketSuccess = (data) => ({
+	type: ADD_TICKET_SUCCESS,
+	payload: { ticket: data.ticket, receivedAt: Date.now() },
+});
+
+export const addTicket = (eventId) => (dispatch) => {
+	dispatch(addTicketRequest());
+	return fetch(`/api/events/${eventId}/ticket`, {
+		method: "POST",
+	}).then((res) => dispatch(addTicketSuccess(res.data)));
+};
 
 export const requestTickets = () => ({
 	type: REQUEST_TICKETS,
@@ -45,10 +63,27 @@ export const fetchTicketsIfNeeded = () => (dispatch, getState) => {
 };
 
 const ticketsReducer = (
-	state = { isFetching: false, needsReset: false, items: [] },
+	state = {
+		isFetching: false,
+		needsReset: false,
+		items: [],
+		isAdding: false,
+	},
 	action
 ) => {
 	switch (action.type) {
+		case ADD_TICKET_REQUEST:
+			return {
+				...state,
+				isAdding: true,
+			};
+		case ADD_TICKET_SUCCESS:
+			return {
+				...state,
+				isAdding: false,
+				items: [...state.items, action.payload.ticket],
+				lastUpdated: action.payload.receivedAt,
+			};
 		case RECEIVE_TICKETS:
 			return {
 				...state,
