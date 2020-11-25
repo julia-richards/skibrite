@@ -15,9 +15,9 @@ module.exports = {
 			delete event.categoryName;
 			event.eventCategoryId = eventCategory.id;
 			// replace dates
-			let startDateString = Date(event.startsAt);
+			let startDateString = parseInt(event.startsAt.split("-")[0], 10);
 			event.startsAt = new Date(startDateString);
-			let endDateString = Date(event.endsAt);
+			let endDateString = parseInt(event.endsAt.split("-")[0], 10);
 			event.endsAt = new Date(endDateString);
 
 			// add to bulk attrs
