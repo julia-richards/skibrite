@@ -2,6 +2,7 @@ const router = require("express").Router();
 const categoriesRouter = require("./categories");
 const eventsRouter = require("./events");
 const sessionRouter = require("./session.js");
+const ticketsRouter = require("./tickets.js");
 const usersRouter = require("./users.js");
 
 // GET /api/set-token-cookie
@@ -38,9 +39,9 @@ router.post("/test", function (req, res) {
 });
 
 router.use("/session", sessionRouter);
-
 router.use("/users", usersRouter);
 router.use("/events", eventsRouter);
 router.use("/categories", categoriesRouter);
+router.use("/tickets", ticketsRouter);
 
 module.exports = router;
