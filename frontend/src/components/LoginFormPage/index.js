@@ -3,7 +3,6 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 
-
 import "./LoginForm.css";
 
 const LoginFormPage = () => {
@@ -31,14 +30,16 @@ const LoginFormPage = () => {
 			<div className="login-background">
 				<div className="login-form">
 					<form onSubmit={handleSubmit}>
-						<p className="logo">skibrite</p>
+						<p className="logo" style={{ margin: "auto" }}>
+							skibrite
+						</p>
 						<ul>
 							{errors.map((error, idx) => (
 								<li key={idx}>{error}</li>
 							))}
 						</ul>
 						<input
-							type='email'
+							type="email"
 							name="email"
 							value={credential}
 							placeholder="email address"
@@ -57,8 +58,8 @@ const LoginFormPage = () => {
 							login
 						</button>
 						<p className="sign-up">
-							Don’t have a skibrite account? {" "}
-							<Link to='/signup'>Sign up</Link> {"or "}
+							Don’t have a skibrite account?{" "}
+							<Link to="/signup">Sign up</Link> {"or "}
 							<Link to="/login-demo">Demo</Link>
 						</p>
 					</form>

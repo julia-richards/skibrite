@@ -55,14 +55,16 @@ const EventPage = (props) => {
 						<p>
 							<strong>State</strong> {event.state}
 						</p>{" "}
-						<p>
-							<strong>Website</strong>{" "}
-							{
-								<a target="_blank" href={event.website}>
-									{event.website}
-								</a>
-							}
-						</p>
+						{!!event.website && (
+							<p>
+								<strong>Website</strong>{" "}
+								{
+									<a target="_blank" href={event.website}>
+										{event.website}
+									</a>
+								}
+							</p>
+						)}
 						<p>
 							<strong>Start Date</strong>{" "}
 							{new Date(event.startsAt).toLocaleDateString(

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, Link} from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -33,7 +33,9 @@ function SignupFormPage() {
 	return (
 		<div className="signup-form-container">
 			<form className="signup-form" onSubmit={handleSubmit}>
-				<p className="logo">skibrite</p>
+				<p className="logo" style={{ margin: "auto" }}>
+					skibrite
+				</p>
 				<p>Sign up</p>
 				<ul>
 					{errors.map((error, idx) => (
@@ -73,10 +75,12 @@ function SignupFormPage() {
 					required
 				/>
 
-				<button type="submit">Sign Up</button>
+				<button type="submit" className="signup-button">
+					Sign Up
+				</button>
 				<span>
-					Already have an account? {" "}
-					<Link to="/login">Login</Link>{" or "}
+					Already have an account? <Link to="/login">Login</Link>
+					{" or "}
 					<Link to="/login-demo">Demo</Link>
 				</span>
 			</form>

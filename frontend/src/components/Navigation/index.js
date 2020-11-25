@@ -10,7 +10,9 @@ const Navigation = () => {
 	return (
 		<div className="navigation">
 			<NavLink exact to="/" className="right-nav">
-				<h2 className="logo">skibrite</h2>
+				<h2 className="logo" style={{ marginLeft: "1.5rem" }}>
+					skibrite
+				</h2>
 			</NavLink>
 
 			<ul className="right-nav">
