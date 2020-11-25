@@ -33,10 +33,10 @@ const EventPage = (props) => {
 		<Layout>
 			<div className="event-page">
 				<div className="event-banner">
-					<p className="event-banner__text">
+					<div className="event-banner__text">
 						<h1>{event.name}</h1>
 						<h4>{event.EventCategory.name}</h4>
-					</p>
+					</div>
 					<ImageBanner
 						alt="alpine-skier"
 						className="event-banner__image"
