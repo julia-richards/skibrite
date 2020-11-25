@@ -5,29 +5,47 @@ import MapDisplay from "../MapDisplay";
 import DefaultDescription from "./DefaultDescription";
 import { ReactComponent as ImageBanner } from "../../images/alpine.svg";
 import * as eventActions from "../../store/events";
+import * as ticketActions from "../../store/tickets";
 import "./EventPage.css";
 
 const EventPage = (props) => {
 	const eventId = props.match.params.eventId;
 	const dispatch = useDispatch();
 	const eventsById = useSelector((state) => state.events.byId);
+	const ticketState = useSelector((state) => state.tickets);
+
+	useEffect(() => {
+		dispatch(ticketActions.fetchTicketsIfNeeded());
+	}, [dispatch, ticketState]);
 
 	useEffect(() => {
 		dispatch(eventActions.fetchEventIfNeeded(eventId));
 	}, [dispatch, eventsById, eventId]);
 
-	const { isFetching, body: event } = eventsById[eventId] || {
+	const { isFetching: isFetchingEvent, body: event } = eventsById[
+		eventId
+	] || {
 		isFetching: true,
 		body: {},
 	};
 
-	if (isFetching) {
+	const {
+		isFetching: isFetchingTickets,
+		items: tickets,
+		isAdding: isAddingTicket,
+	} = ticketState;
+
+	if (isFetchingEvent || isFetchingTickets) {
 		return (
 			<Layout>
 				<p>Loading...</p>
 			</Layout>
 		);
 	}
+
+	const eventTicket = tickets.find(
+		(ticket) => ticket.eventId == parseInt(eventId, 10)
+	);
 
 	return (
 		<Layout>
@@ -52,6 +70,19 @@ const EventPage = (props) => {
 						)}
 					</div>
 					<div className="event-details__details">
+						{!!eventTicket ? (
+							<p>Already has ticket</p>
+						) : isAddingTicket ? (
+							<button disabled>Adding...</button>
+						) : (
+							<button
+								onClick={() =>
+									dispatch(ticketActions.addTicket(eventId))
+								}
+							>
+								Get Ticket
+							</button>
+						)}
 						<p>
 							<strong>State</strong> {event.state}
 						</p>{" "}
