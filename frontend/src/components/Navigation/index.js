@@ -22,9 +22,14 @@ const Navigation = () => {
 					</NavLink>
 				</li>
 				{!!user ? (
-					<li>
-						<ProfileButton user={user} />
-					</li>
+					<>
+						<li>
+							<NavLink to="/tickets">tickets</NavLink>
+						</li>
+						<li>
+							<ProfileButton user={user} />
+						</li>
+					</>
 				) : (
 					<>
 						<li>
