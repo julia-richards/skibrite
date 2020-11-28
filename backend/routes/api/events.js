@@ -3,11 +3,7 @@ const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
-const {
-	setTokenCookie,
-	requireAuth,
-	restoreUser,
-} = require("../../utils/auth");
+const { requireAuth } = require("../../utils/auth");
 const { User, Event, EventCategory, Ticket } = require("../../db/models");
 
 const router = express.Router();
@@ -46,7 +42,7 @@ router.get(
 
 router.post(
 	"/:eventId/ticket",
-	restoreUser,
+	requireAuth,
 	asyncHandler(async (req, res) => {
 		const { user } = req;
 		const eventId = req.params.eventId;
@@ -54,7 +50,12 @@ router.post(
 			userId: user.id,
 			eventId,
 		});
-		return res.json({ ticket: newTicket });
+		const ticket = await Ticket.findOne({
+			where: { id: newTicket.id },
+			include: [{ model: Event }],
+		});
+
+		return res.json({ ticket });
 	})
 );
 

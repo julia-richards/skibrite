@@ -1,15 +1,14 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { restoreUser } = require("../../utils/auth.js");
+const { requireAuth } = require("../../utils/auth.js");
 
 const { Event, Ticket } = require("../../db/models");
 
 const router = express.Router();
 
-// TODO: make me work
 router.get(
 	"/",
-	restoreUser,
+	requireAuth,
 	asyncHandler(async (req, res) => {
 		const { user } = req;
 
@@ -19,6 +18,20 @@ router.get(
 		});
 
 		return res.json({ tickets });
+	})
+);
+
+router.delete(
+	"/:ticketId",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const ticketId = req.params.ticketId;
+		const { user } = req;
+
+		await Ticket.destroy({
+			where: { id: ticketId, userId: user.id },
+		});
+		return res.json({ message: "Ticket successfully deleted" });
 	})
 );
 
