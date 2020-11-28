@@ -5,6 +5,8 @@ export const REQUEST_TICKETS = "REQUEST_TICKETS";
 export const RESET_TICKETS = "RESET_TICKETS";
 export const ADD_TICKET_REQUEST = "ADD_TICKET_REQUEST";
 export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS ";
+export const DELETE_TICKET_REQUEST = "DELETE_TICKET_REQUEST";
+export const DELETE_TICKET_SUCCESS = "DELETE_TICKET_SUCCESS";
 
 const addTicketRequest = () => ({
 	type: ADD_TICKET_REQUEST,
@@ -66,6 +68,23 @@ export const fetchTicketsIfNeeded = () => (dispatch, getState) => {
 	}
 };
 
+const deleteTicketRequest = (ticketId) => ({
+	type: DELETE_TICKET_REQUEST,
+	payload: { ticketId },
+});
+
+const deleteTicketSuccess = (ticketId) => ({
+	type: DELETE_TICKET_SUCCESS,
+	payload: { ticketId, receivedAt: Date.now() },
+});
+
+export const deleteTicket = (ticketId) => (dispatch) => {
+	dispatch(deleteTicketRequest(ticketId));
+	return fetch(`/api/tickets/${ticketId}`, {
+		method: "DELETE",
+	}).then(() => dispatch(deleteTicketSuccess(ticketId)));
+};
+
 const ticketsReducer = (
 	state = {
 		isFetching: false,
@@ -100,6 +119,22 @@ const ticketsReducer = (
 			return { ...state, needsReset: false, isFetching: true };
 		case RESET_TICKETS:
 			return { ...state, needsReset: true };
+		case DELETE_TICKET_REQUEST:
+			return {
+				...state,
+				items: state.items.map((ticket) =>
+					ticket.id === action.payload.ticketId
+						? { ...ticket, isDeleting: true }
+						: ticket
+				),
+			};
+		case DELETE_TICKET_SUCCESS:
+			return {
+				...state,
+				items: state.items.filter(
+					(ticket) => ticket.id !== action.payload.ticketId
+				),
+			};
 		default:
 			return state;
 	}
