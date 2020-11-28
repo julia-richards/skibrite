@@ -31,7 +31,7 @@ const MapDisplay = ({ lat, long }) => {
 			>
 				        
 				<TileLayer
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					url="https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					crossOrigin
 				/>
 				        

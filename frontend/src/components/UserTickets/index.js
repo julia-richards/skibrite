@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Layout from "../Layout";
+import MapDisplay from "../MapDisplay";
 import * as ticketActions from "../../store/tickets";
 import "./UserTickets.css";
 
@@ -31,43 +32,60 @@ const UserTickets = (props) => {
 			<div className="UserTickets">
 				<h1>My Tickets</h1>
 				{!!tickets.length ? (
-					<ul style={isFetching ? { opacity: 0.7 } : {}}>
+					<ul
+						style={isFetching ? { opacity: 0.7 } : {}}
+						className="UserTickets__ticket-list"
+					>
 						{tickets.map((ticket) => (
 							<li key={ticket.id}>
-								{/* <pre>{JSON.stringify(ticket, null, 2)}</pre> */}
 								<div className="ticket-card">
-									<p className="ticket-event-name">
-										{ticket.Event.name}
-									</p>
-									<br />
-									<p className="date-ribbon">
-										{new Date(
-											ticket.Event.startsAt
-										).toLocaleDateString(undefined, {
-											weekday: "long",
-											year: "numeric",
-											month: "long",
-											day: "numeric",
-										})}
-									</p>
-									<a href={ticket.Event.website}>
-										Event website
-									</a>
-									{ticket.isDeleting ? (
-										<button disabled>Deleting...</button>
-									) : (
-										<button
-											onClick={() =>
-												dispatch(
-													ticketActions.deleteTicket(
-														ticket.id
-													)
-												)
-											}
-										>
-											Remove ticket for this event
-										</button>
-									)}
+									<div className="ticket-card__map">
+										<MapDisplay
+											lat={ticket.Event.lat}
+											long={ticket.Event.long}
+										/>
+									</div>
+									<div className="ticket-card__details">
+										<h2 className="ticket-event-name">
+											{ticket.Event.name}
+										</h2>
+										<h4 className="date-ribbon">
+											{new Date(
+												ticket.Event.startsAt
+											).toLocaleDateString(undefined, {
+												weekday: "long",
+												year: "numeric",
+												month: "long",
+												day: "numeric",
+											})}
+										</h4>
+										<div className="ticket-card__details__actions">
+											<a
+												href={ticket.Event.website}
+												className="link-button"
+											>
+												Event website
+											</a>
+											{ticket.isDeleting ? (
+												<button disabled>
+													Deleting...
+												</button>
+											) : (
+												<button
+													onClick={() =>
+														dispatch(
+															ticketActions.deleteTicket(
+																ticket.id
+															)
+														)
+													}
+													className="button button--danger"
+												>
+													Remove ticket
+												</button>
+											)}
+										</div>
+									</div>
 								</div>
 							</li>
 						))}
