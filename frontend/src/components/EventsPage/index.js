@@ -48,13 +48,22 @@ const EventsPage = () => {
 				</header>
 
 				{!!events.length ? (
-					<ul style={isFetching ? { opacity: 0.7 } : {}}>
+					<ul
+						className="EventList"
+						style={isFetching ? { opacity: 0.7 } : {}}
+					>
 						{events.map((event) => (
-							<li className="EventItem" key={event.id}>
-								<h2>{event.name}</h2>
-								<h3>{event.categoryName}</h3>
-								<p>{event.website}</p>
-								<Link to={`/event/${event.id}`}>
+							<li className="EventList__EventItem" key={event.id}>
+								<h3 className="EventList__EventItem__category">
+									{event.EventCategory.name}
+								</h3>
+								<h2 className="EventList__EventItem__name">
+									{event.name}
+								</h2>
+								<Link
+									to={`/event/${event.id}`}
+									className="link-button"
+								>
 									View Event
 								</Link>
 							</li>

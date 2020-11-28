@@ -16,9 +16,11 @@ router.get(
 		const events = !!eventCategoryId
 			? await Event.findAll({
 					where: { eventCategoryId },
+					include: [{ model: EventCategory }],
 					order: [["name", "ASC"]],
 			  })
 			: await Event.findAll({
+					include: [{ model: EventCategory }],
 					order: [["name", "ASC"]],
 			  });
 
