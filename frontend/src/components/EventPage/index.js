@@ -74,7 +74,24 @@ const EventPage = (props) => {
 						{!user ? (
 							"Login to register for events"
 						) : !!eventTicket ? (
-							<p>Registered!</p>
+							<div>
+								<p>Registered!</p>
+								{eventTicket.isDeleting ? (
+									<button disabled>Deleting...</button>
+								) : (
+									<button
+										onClick={() =>
+											dispatch(
+												ticketActions.deleteTicket(
+													eventTicket.id
+												)
+											)
+										}
+									>
+										Remove ticket for this event
+									</button>
+								)}
+							</div>
 						) : isAddingTicket ? (
 							<button disabled>Adding...</button>
 						) : (
