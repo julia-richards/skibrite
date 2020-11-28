@@ -36,7 +36,7 @@ function SignupFormPage() {
 				<p className="logo" style={{ margin: "auto" }}>
 					skibrite
 				</p>
-				<p>Sign up</p>
+				<p className='signup-text'>Sign up</p>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>

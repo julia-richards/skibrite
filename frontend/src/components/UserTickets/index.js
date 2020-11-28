@@ -29,12 +29,31 @@ const UserTickets = (props) => {
 	return (
 		<Layout>
 			<div className="UserTickets">
-				<h1>Tickets</h1>
+				<h1>My Tickets</h1>
 				{!!tickets.length ? (
 					<ul style={isFetching ? { opacity: 0.7 } : {}}>
 						{tickets.map((ticket) => (
 							<li key={ticket.id}>
-								<pre>{JSON.stringify(ticket, null, 2)}</pre>
+								{/* <pre>{JSON.stringify(ticket, null, 2)}</pre> */}
+								<div className="ticket-card">
+									<p className="ticket-event-name">
+										{ticket.Event.name}
+									</p>
+									<br />
+									<p className="date-ribbon">
+										{new Date(
+											ticket.Event.startsAt
+										).toLocaleDateString(undefined, {
+											weekday: "long",
+											year: "numeric",
+											month: "long",
+											day: "numeric",
+										})}
+									</p>
+									<a href={ticket.Event.website}>
+										Event website
+									</a>
+								</div>
 							</li>
 						))}
 					</ul>

@@ -19,7 +19,7 @@
 	background-color: var(--background);
 	transition: height 0.1s;
 }
-p {
+.signup-text {
 	font-size: 24px;
 }
 form {

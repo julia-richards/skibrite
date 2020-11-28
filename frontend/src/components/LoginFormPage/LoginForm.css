@@ -27,10 +27,7 @@
 	font-weight: normal;
 	color: var(--dark-blue);
 }
-p {
-	font-size: 24px;
-	color: var(--dark-blue);
-}
+
 form {
 	display: flex;
 	flex-direction: column;
