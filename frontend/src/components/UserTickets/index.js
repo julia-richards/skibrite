@@ -53,6 +53,21 @@ const UserTickets = (props) => {
 									<a href={ticket.Event.website}>
 										Event website
 									</a>
+									{ticket.isDeleting ? (
+										<button disabled>Deleting...</button>
+									) : (
+										<button
+											onClick={() =>
+												dispatch(
+													ticketActions.deleteTicket(
+														ticket.id
+													)
+												)
+											}
+										>
+											Remove ticket for this event
+										</button>
+									)}
 								</div>
 							</li>
 						))}
