@@ -12,7 +12,44 @@ This app was bootstraped in 1-week as part of App Academy's full stack program. 
 
 ### redux-thunk driven data fetching only as needed
 
-As shown in the ticket store [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/store/tickets.js#L47-L69) the tickets are only fetched as needed. This makes for a simple useEffect in the ticket component as needed (see [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/components/UserTickets/index.js#L11-L15)). I use this fetchIfNeeded pattern, which is articulated as a recipe in the redux docs, elsewhere in the app for categories and events as well.
+As shown in the ticket store [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/store/tickets.js#L47-L69) and below the tickets are only fetched as needed. This makes for a simple useEffect in the ticket component as needed (see [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/components/UserTickets/index.js#L11-L15) and below). I use this fetchIfNeeded pattern, which is articulated as a recipe in the redux docs, elsewhere in the app for categories and events as well.
+
+```js
+// frontend/src/store/tickets.js#L47-L69
+
+const shouldFetchTickets = (state) => {
+	const tickets = state.tickets;
+	const user = state.session.user;
+	if (!user) {
+		return false;
+	}
+	if (!tickets) {
+		return true;
+	}
+	if (tickets.isFetching) {
+		return false;
+	}
+	if (!tickets.lastUpdated) {
+		return true;
+	}
+	return tickets.needsReset;
+};
+
+export const fetchTicketsIfNeeded = () => (dispatch, getState) => {
+	if (shouldFetchTickets(getState())) {
+		return dispatch(fetchTickets());
+	}
+};
+
+// frontend/src/components/UserTickets/index.js#L11-L15
+
+const ticketState = useSelector((state) => state.tickets);
+
+useEffect(() => {
+  dispatch(ticketActions.fetchTicketsIfNeeded());
+}, [dispatch]);
+
+```
 
 ### package-like codebase, single deployment
 
@@ -20,7 +57,7 @@ As previously stated, this app uses a Express + Sequelize backend with a create-
 
 ### using SkiReg.com as data-source
 
-I wrote a one-time script to pull data from the [SkiReg.com Event Search API](https://www.skireg.com/api/EventSearchDoc.aspx). [This script](https://github.com/julia-richards/solo-react-project/blob/main/backend%2Fscripts%2FdataFetch.js) is run from the command line and transforms the data from "their shape" into "my shape" which is then feed into the Sequelize seed files as shown here. It was tricky to figure out syntax and properly normalize it into a relational database but I think was time well spent to give the app a more "real world" feel VS using a data seed tool like Faker. Future work could pull this via a chron (think 1x per day or 1x per hour) to ensure the data is continuously up to date!
+I wrote a one-time script to pull data from the [SkiReg.com Event Search API](https://www.skireg.com/api/EventSearchDoc.aspx). [This script](https://github.com/julia-richards/solo-react-project/blob/main/backend%2Fscripts%2FdataFetch.js) is run from the command line and transforms the data from "their shape" into "my shape" which is then feed into the Sequelize seed files as shown here. It was tricky to figure out syntax and properly normalize it into a relational database, but I think was time well spent to give the app a more "real world" feel VS using a data seed tool like Faker. Future work could pull this via a chron (think 1x per day or 1x per hour) to ensure the data is continuously up to date!
 
 ### brand colors in one place via CSS custom properties (variables)
 
