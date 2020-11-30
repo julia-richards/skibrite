@@ -27,23 +27,30 @@ const ProfileButton = ({ user }) => {
 	};
 
 	return (
-		<>
+		<div className="profile-button">
 			<button
-				style={{ color: "#4A4E69", fontSize: 24 }}
+				className="profile-button__trigger"
+				style={{
+					color: "#4A4E69",
+					fontSize: 14,
+					backgroundColor: "transparent",
+				}}
 				onClick={openMenu}
 			>
-				<i className="fas fa-skiing-nordic"></i>
+				<i className="fas fa-ellipsis-v"></i>
 			</button>
 			{showMenu && (
-				<ul className="profile-dropdown">
+				<ul className="profile-button__dropdown">
 					<li>{user.username}</li>
 					<li>{user.email}</li>
 					<li>
-						<button onClick={logout}>Log Out</button>
+						<button className="button" onClick={logout}>
+							Log Out
+						</button>
 					</li>
 				</ul>
 			)}
-		</>
+		</div>
 	);
 };
 

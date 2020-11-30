@@ -28,6 +28,15 @@ body {
 	background-color: var(--light-pink);
 }
 
+button {
+	cursor: pointer;
+}
+
+button:focus,
+button:active {
+	outline: none;
+}
+
 /* @media (prefers-color-scheme: dark) {
 	body {
 		--light-blue: #d7f9ff;
