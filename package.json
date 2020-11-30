@@ -21,5 +21,8 @@
 	"bugs": {
 		"url": "https://github.com/julia-richards/solo-react-project/issues"
 	},
-	"homepage": "https://github.com/julia-richards/solo-react-project#readme"
+	"homepage": "https://github.com/julia-richards/solo-react-project#readme",
+	"engines": {
+		"node": "12.x"
+	}
 }
