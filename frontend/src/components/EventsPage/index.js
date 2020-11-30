@@ -8,6 +8,22 @@ import * as categoryActions from "../../store/categories";
 
 import "./EventsPage.css";
 
+export const EventList = ({ events, isFetching = false }) => (
+	<ul className="EventList" style={isFetching ? { opacity: 0.7 } : {}}>
+		{events.map((event) => (
+			<li className="EventList__EventItem" key={event.id}>
+				<h3 className="EventList__EventItem__category">
+					{event.EventCategory.name}
+				</h3>
+				<h2 className="EventList__EventItem__name">{event.name}</h2>
+				<Link to={`/event/${event.id}`} className="link-button">
+					View Event
+				</Link>
+			</li>
+		))}
+	</ul>
+);
+
 const EventsPage = () => {
 	const dispatch = useDispatch();
 	const categories = useSelector((state) => state.categories);
@@ -48,27 +64,7 @@ const EventsPage = () => {
 				</header>
 
 				{!!events.length ? (
-					<ul
-						className="EventList"
-						style={isFetching ? { opacity: 0.7 } : {}}
-					>
-						{events.map((event) => (
-							<li className="EventList__EventItem" key={event.id}>
-								<h3 className="EventList__EventItem__category">
-									{event.EventCategory.name}
-								</h3>
-								<h2 className="EventList__EventItem__name">
-									{event.name}
-								</h2>
-								<Link
-									to={`/event/${event.id}`}
-									className="link-button"
-								>
-									View Event
-								</Link>
-							</li>
-						))}
-					</ul>
+					<EventList events={events} isFetching={isFetching} />
 				) : isFetching ? (
 					<p>Loading...</p>
 				) : (

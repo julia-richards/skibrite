@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Layout from "../Layout";
-import { ReactComponent as ImageBanner } from "../../images/allEvents.svg";
+import { ReactComponent as ImageBanner } from "../../images/club.svg";
+import { EventList } from "../EventsPage";
 import "./HomePage.css";
-import * as categoryActions from "../../store/categories";
+import * as eventActions from "../../store/events";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
-	const categories = useSelector((state) => state.categories);
+	const eventsByEventCategoryId = useSelector(
+		(state) => state.events.eventsByEventCategoryId
+	);
+
 	useEffect(() => {
-		dispatch(categoryActions.fetchCategoriesIfNeeded());
-	}, [dispatch, categories]);
+		dispatch(eventActions.fetchEventsIfNeeded(""));
+	}, [dispatch]);
+
+	const { isFetching, items: events } = eventsByEventCategoryId[""] || {
+		isFetching: true,
+		items: [],
+	};
 
 	return (
 		<Layout>
@@ -24,14 +33,8 @@ const HomePage = () => {
 				/>
 			</div>
 			<div className="event-category-links">
-				<h2>Browse events by category</h2>
-				<div>
-					<ul>
-						{categories.map((cat) => (
-							<li key={cat.id}>{cat.name}</li>
-						))}
-					</ul>
-				</div>
+				<h2>Upcoming Events</h2>
+				<EventList events={events.slice(0, 8)} />
 			</div>
 		</Layout>
 	);

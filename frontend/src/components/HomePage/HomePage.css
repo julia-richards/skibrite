@@ -23,7 +23,13 @@
 }
 
 .event-category-links {
-	color: var(--dark-blue);
+	/* color: var(--dark-blue); */
 	font-weight: 800;
 	margin-left: 1.5rem;
+}
+
+.event-category-links__list {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1em;
 }

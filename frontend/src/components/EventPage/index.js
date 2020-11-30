@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Layout from "../Layout";
 import MapDisplay from "../MapDisplay";
 import DefaultDescription from "./DefaultDescription";
-import { ReactComponent as ImageBanner } from "../../images/alpine.svg";
+import EventImage from "../EventImage";
 import * as eventActions from "../../store/events";
 import * as ticketActions from "../../store/tickets";
 import "./EventPage.css";
@@ -56,8 +56,8 @@ const EventPage = (props) => {
 						<h1>{event.name}</h1>
 						<h4>{event.EventCategory.name}</h4>
 					</div>
-					<ImageBanner
-						alt="alpine-skier"
+					<EventImage
+						name={event.EventCategory.name}
 						className="event-banner__image"
 					/>
 				</div>
