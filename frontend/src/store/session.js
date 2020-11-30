@@ -70,7 +70,6 @@ const initialState = { user: null };
 
 //set-up session reducer
 const sessionReducer = (state = initialState, action) => {
-	let newState;
 	switch (action.type) {
 		case SET_SESSION_USER:
 			return { ...state, user: action.payload.user };
