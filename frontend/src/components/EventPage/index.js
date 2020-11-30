@@ -48,12 +48,15 @@ const EventPage = (props) => {
 		(ticket) => ticket.eventId === parseInt(eventId, 10)
 	);
 
+	const eventName =
+		event.name.length > 68 ? `${event.name.slice(0, 65)}...` : event.name;
+
 	return (
 		<Layout>
 			<div className="event-page">
 				<div className="event-banner">
 					<div className="event-banner__text">
-						<h1>{event.name}</h1>
+						<h1>{eventName}</h1>
 						<h4>{event.EventCategory.name}</h4>
 					</div>
 					<EventImage
