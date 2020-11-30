@@ -12,7 +12,7 @@ const UserTickets = (props) => {
 
 	useEffect(() => {
 		dispatch(ticketActions.fetchTicketsIfNeeded());
-	}, []);
+	}, [dispatch]);
 
 	const { isFetching, items: tickets, lastUpdated } = ticketState;
 

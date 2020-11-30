@@ -10,7 +10,7 @@ const HomePage = () => {
 	const categories = useSelector((state) => state.categories);
 	useEffect(() => {
 		dispatch(categoryActions.fetchCategoriesIfNeeded());
-	}, [categories]);
+	}, [dispatch, categories]);
 
 	return (
 		<Layout>

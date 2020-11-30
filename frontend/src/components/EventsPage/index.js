@@ -20,13 +20,13 @@ const EventsPage = () => {
 
 	useEffect(() => {
 		dispatch(eventActions.fetchEventsIfNeeded(selectedEventCategoryId));
-	}, [selectedEventCategoryId]);
+	}, [dispatch, selectedEventCategoryId]);
 
 	useEffect(() => {
 		dispatch(categoryActions.fetchCategoriesIfNeeded());
-	}, [categories]);
+	}, [dispatch, categories]);
 
-	const { isFetching, lastUpdated, items: events } = eventsByEventCategoryId[
+	const { isFetching, items: events } = eventsByEventCategoryId[
 		selectedEventCategoryId
 	] || {
 		isFetching: true,

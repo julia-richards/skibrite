@@ -45,7 +45,7 @@ const EventPage = (props) => {
 	}
 
 	const eventTicket = tickets.find(
-		(ticket) => ticket.eventId == parseInt(eventId, 10)
+		(ticket) => ticket.eventId === parseInt(eventId, 10)
 	);
 
 	return (
@@ -111,7 +111,11 @@ const EventPage = (props) => {
 							<p>
 								<strong>Website</strong>{" "}
 								{
-									<a target="_blank" href={event.website}>
+									<a
+										target="_blank"
+										href={event.website}
+										rel="noreferrer"
+									>
 										{event.website}
 									</a>
 								}
