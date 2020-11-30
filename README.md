@@ -10,9 +10,9 @@ This app is built using an Express JS backend Postgres database via the handy Se
 
 This app was bootstraped in 1-week as part of App Academy's full stack program. A general feature list can be see [here](https://github.com/julia-richards/solo-react-project/wiki/Feature-List)
 
-### redux-thunk driven data fetching only as needed
+### only fetching data as needed via conditional redux-thunk
 
-As shown in the ticket store [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/store/tickets.js#L47-L69) and below the tickets are only fetched as needed. This makes for a simple useEffect in the ticket component as needed (see [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/components/UserTickets/index.js#L11-L15) and below). I use this fetchIfNeeded pattern, which is articulated as a recipe in the redux docs, elsewhere in the app for categories and events as well.
+As shown in the ticket store [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/store/tickets.js#L47-L69) and below the tickets are only fetched as needed. This makes for a simple useEffect in the ticket component as needed (see [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/components/UserTickets/index.js#L11-L15) and below). I use this fetchIfNeeded pattern, which is articulated as a recipe in the [redux docs](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/async?file=/src/actions/index.js), elsewhere in the app for categories and events as well. The benefits can be seen while going back and forth between an event-specific show page and the tickets list page (notice that `Loading...` only shown the first time!).
 
 ```js
 // the 'complicated' logic in the store for reuse
