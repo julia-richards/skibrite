@@ -2,7 +2,6 @@
 	"name": "authentication-frontend",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
 	"scripts": {
 		"heroku-postbuild": "npm run build --prefix frontend",
 		"install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
