@@ -4,7 +4,7 @@ Skibrite is an app that is inspired by eventbrite. It allows users to find and r
 
 A live version of the application can be found [here](https://skibrite.herokuapp.com/). Please keep in mind that it is hosted on a free-tier so it might take a few seconds to wake up!
 
-This app is built using an Express JS backend Postgres database via the handy Sequelize ORM. For the frontend UI that users "know" they interact with I chose to use React w/ Redux for state manangement and Vanilla CSS.
+This app is built using an Express JS backend Postgres database via the handy Sequelize ORM. For the frontend I chose to use React w/ Redux for state manangement and Vanilla CSS.
 
 ## Features
 
