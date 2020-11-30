@@ -15,32 +15,35 @@ This app was bootstraped in 1-week as part of App Academy's full stack program. 
 As shown in the ticket store [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/store/tickets.js#L47-L69) and below the tickets are only fetched as needed. This makes for a simple useEffect in the ticket component as needed (see [here](https://github.com/julia-richards/solo-react-project/blob/main/frontend/src/components/UserTickets/index.js#L11-L15) and below). I use this fetchIfNeeded pattern, which is articulated as a recipe in the redux docs, elsewhere in the app for categories and events as well.
 
 ```js
+// the 'complicated' logic in the store for reuse
 // frontend/src/store/tickets.js#L47-L69
 
 const shouldFetchTickets = (state) => {
-	const tickets = state.tickets;
-	const user = state.session.user;
-	if (!user) {
-		return false;
-	}
-	if (!tickets) {
-		return true;
-	}
-	if (tickets.isFetching) {
-		return false;
-	}
-	if (!tickets.lastUpdated) {
-		return true;
-	}
-	return tickets.needsReset;
+  const tickets = state.tickets;
+  const user = state.session.user;
+  if (!user) {
+    return false;
+  }
+  if (!tickets) {
+    return true;
+  }
+  if (tickets.isFetching) {
+    return false;
+  }
+  // if lastUpdated is set has fetched
+  if (!tickets.lastUpdated) {
+    return true;
+  }
+  return tickets.needsReset;
 };
 
 export const fetchTicketsIfNeeded = () => (dispatch, getState) => {
-	if (shouldFetchTickets(getState())) {
-		return dispatch(fetchTickets());
-	}
+  if (shouldFetchTickets(getState())) {
+    return dispatch(fetchTickets());
+  }
 };
 
+// a simple hook inside a presentational(ish) functional component to 'just give me data'
 // frontend/src/components/UserTickets/index.js#L11-L15
 
 const ticketState = useSelector((state) => state.tickets);
