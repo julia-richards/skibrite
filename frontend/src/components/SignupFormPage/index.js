@@ -33,10 +33,13 @@ function SignupFormPage() {
 	return (
 		<div className="signup-form-container">
 			<form className="signup-form" onSubmit={handleSubmit}>
-				<p className="logo" style={{ margin: "auto" }}>
+				<strong
+					className="logo"
+					style={{ margin: "auto", fontSize: 18 }}
+				>
 					skibrite
-				</p>
-				<p className='signup-text'>Sign up</p>
+				</strong>
+				<h1 className="signup-text">Sign up</h1>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
@@ -78,11 +81,11 @@ function SignupFormPage() {
 				<button type="submit" className="signup-button">
 					Sign Up
 				</button>
-				<span>
+				<p>
 					Already have an account? <Link to="/login">Login</Link>
 					{" or "}
 					<Link to="/login-demo">Demo</Link>
-				</span>
+				</p>
 			</form>
 		</div>
 	);
