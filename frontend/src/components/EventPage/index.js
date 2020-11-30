@@ -74,28 +74,29 @@ const EventPage = (props) => {
 						{!user ? (
 							"Login to register for events"
 						) : !!eventTicket ? (
-							<div>
-								<p>Registered!</p>
-								{eventTicket.isDeleting ? (
-									<button disabled>Deleting...</button>
-								) : (
-									<button
-										onClick={() =>
-											dispatch(
-												ticketActions.deleteTicket(
-													eventTicket.id
-												)
+							eventTicket.isDeleting ? (
+								<button disabled>Deleting...</button>
+							) : (
+								<button
+									className="button button--danger"
+									onClick={() =>
+										dispatch(
+											ticketActions.deleteTicket(
+												eventTicket.id
 											)
-										}
-									>
-										Remove ticket for this event
-									</button>
-								)}
-							</div>
+										)
+									}
+								>
+									Remove ticket
+								</button>
+							)
 						) : isAddingTicket ? (
-							<button disabled>Adding...</button>
+							<button className="button" disabled>
+								Adding...
+							</button>
 						) : (
 							<button
+								className="button"
 								onClick={() =>
 									dispatch(ticketActions.addTicket(eventId))
 								}
