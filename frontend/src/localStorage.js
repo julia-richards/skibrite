@@ -20,7 +20,11 @@ export const loadState = () => {
 export const saveState = state => {
   try {
     const serializedState = JSON.stringify({
-      state,
+      state: {
+        session: state.session,
+        events: state.events,
+        categories: state.categories,
+      },
       lastSavedAt: Date.now(),
     });
     localStorage.setItem("skibrite-redux-state", serializedState);
